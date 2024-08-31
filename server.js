@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const { auth, requiredScopes } = require("express-oauth2-jwt-bearer");
 
 app.get("/", (req, res) => {
   res.send("hii");
