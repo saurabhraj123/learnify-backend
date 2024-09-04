@@ -1,6 +1,18 @@
+/** Imports */
+require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const app = express();
-const { auth, requiredScopes } = require("express-oauth2-jwt-bearer");
+
+/** Middlewares */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: `${process.env.FRONTEND_URI}`,
+  })
+);
+require("./routes")(app);
 
 app.get("/", (req, res) => {
   res.send("hii");
